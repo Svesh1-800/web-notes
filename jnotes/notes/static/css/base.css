@@ -1,0 +1,19 @@
+.search-field{
+	position: relative;
+	left: 40%;
+	margin-top: 40px;
+
+}
+.nav-item{
+	padding-left: 20px;
+}
+.main-text{
+	font-size: 20px;
+	font-family: 'Georgia';
+}
+.end-nav{
+	position: absolute;
+	right: 0px;
+	padding-right:2px;
+
+}

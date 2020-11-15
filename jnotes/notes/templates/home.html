@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<table border="5">
-    <tr>
-        <th>#</th>
-        <th>$</th>
-    </tr>
-    <tr>
-        <th>1</th>
-        <th>3</th>
-    </tr>
+{% extends 'base.html' %}
 
-</table>
-</body>
-</html>
+{% block title %}IT IS WORKING {% endblock %}
+
+{% block content %}
+{% for post in object_list %}
+
+<p>{{post.title_note}}</p>
+{% endfor %}
+{% endblock %}
