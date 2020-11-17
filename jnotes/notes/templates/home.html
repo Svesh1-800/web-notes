@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
-
 {% block title %}IT IS WORKING {% endblock %}
 
 {% block content %}
+<style>
+    .card{
+        margin-top: 40px;
+        width: 55%;
+        position: relative;
+	    left: 24%;
+
+    }
+</style>
+
 {% for post in object_list %}
-<div class="cards" style="margin-top:20px;">
-    <div class="card">
-      <div class="card-header">
-        {{ post.category_note }}
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ post.title_note }}</h5>
-        <p class="card-text">{{ post.content_note }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
+
+<div class="card">
+  <div class="card-header">
+    {{ post.category_note }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title_note }}</h5>
+    <p class="card-text">{{ post.content_note }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>
 
 {% endfor %}
