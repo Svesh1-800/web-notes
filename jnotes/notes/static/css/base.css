@@ -18,3 +18,12 @@
 	right: 0px;
 	padding-right:2px;
 }
+.search-field{
+    position: absolute;
+    left:20%;
+}
+.form-control{
+    position: absolute;
+    left:20%;
+    background-color: pink;
+}
