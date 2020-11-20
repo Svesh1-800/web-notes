@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}IT IS WORKING {% endblock %}
+{% block title %} Jnotes {% endblock %}
 
 {% block content %}
 <style>
@@ -21,7 +21,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ post.title_note }}</h5>
     <p class="card-text">{{ post.content_note }}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
 
