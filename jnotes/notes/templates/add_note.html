@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} СОЗДАТЕЛЬ {% endblock %}
+
+{% block content %}
+<h1>dfgdsgfdsf</h1>
+<br>
+ <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Post</button>
+    </form>
+{% endblock %}
