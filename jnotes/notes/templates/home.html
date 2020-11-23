@@ -16,12 +16,17 @@
 
 <div class="card">
   <div class="card-header">
-    {{ post.category_note }}
+    {{ post.category_note }} - {{ post.date_note }}
   </div>
   <div class="card-body">
     <h5 class="card-title">{{ post.title_note }}</h5>
     <p class="card-text">{{ post.content_note }}</p>
     <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">Go somewhere</a>
+    <a href="{% url 'note-delete' post.pk %}" class="btn btn-primary">Delete</a>
+    <a href="{% url 'note-update' post.pk %}" class="btn btn-primary">Edit</a>
+</div>
+
+</div>
   </div>
 </div>
 
