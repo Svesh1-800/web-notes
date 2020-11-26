@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
@@ -30,8 +31,28 @@ class NoteDeleteView(DeleteView):
     success_url = reverse_lazy('home')
     context_object_name = 'note'
 
+# Обновление заметки
 class NoteUpdateView(UpdateView):
     model = Note
     template_name = 'note-update.html'
     fields = '__all__'
+
+
+# вывод всех существующих категорий в блоке "все категории"
+def CategoriesList(request):
+    just_categories = set()
+    data = Note.objects.filter().values_list('category_note', flat=True)
+    for note in data:
+        just_categories.add(note)
+    context = {
+        'categories': just_categories
+
+    }
+    return render(request, 'categories_list.html', context= context)
+
+
+# values(name) - получить  объекты одного поля
+# values_list(name) - получить все объекты одного поля в формате листа
+
+
 
