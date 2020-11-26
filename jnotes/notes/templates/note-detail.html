@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'static/note-detail.css' %}">
 
 {% block title %} note: {{ note.title_note }} {% endblock %}
 
 {% block content %}
-<div class="text">
-<h1>{{ note.title_note }}</h1>
-<h3>{{ note.category_note }}</h3>
-<p>{{ note.content_note }}</p>
+
+<div class="text-block">
+    <h1>{{ note.title_note }}</h1>
+    <h3>{{ note.category_note }}</h3>
+    <p>{{ note.content_note }}</p>
 </div>
-<style>
-    .text{
-    position: absolute;
-    left: 10%;
-    margin-top: 20px;
-    }
-</style>
+
 {% endblock %}

@@ -51,6 +51,12 @@ def CategoriesList(request):
     return render(request, 'categories_list.html', context= context)
 
 
+def OneCategoryList(request, current_category):
+    category_posts = Note.objects.filter(category_note = current_category)
+    return render(request, 'special_category.html',{'notes_list': category_posts} )
+
+
+
 # values(name) - получить  объекты одного поля
 # values_list(name) - получить все объекты одного поля в формате листа
 
