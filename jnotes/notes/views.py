@@ -9,7 +9,7 @@ from .models import Note
 class HomeView(ListView):
     model = Note
     template_name = 'home.html'
-    ordering = ['-title_note']
+    ordering = ['-date_note']
     context_object_name = 'notes_list'
 
 # содержание заметки
