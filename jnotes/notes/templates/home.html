@@ -1,16 +1,9 @@
 {% extends 'base.html' %}
 {% block title %} Jnotes {% endblock %}
+{% load static %}
 
 {% block content %}
-<style>
-    .card{
-        margin-top: 40px;
-        width: 55%;
-        position: relative;
-	    left: 24%;
-
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 {% for post in notes_list %}
 

@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'static/note-detail.css' %}">
+
 
 {% block title %} note: {{ note.title_note }} {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/note-detail.css' %}">
 
 <div class="text-block">
     <h1>{{ note.title_note }}</h1>
