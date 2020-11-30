@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} СОЗДАТЕЛЬ {% endblock %}
+{% block title %}master{% endblock %}
 
 {% block content %}
 <h1>Создание новой заметки</h1>
@@ -8,6 +8,6 @@
  <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary">Post</button>
+        <button class="btn btn-primary">Сохранить</button>
     </form>
 {% endblock %}
