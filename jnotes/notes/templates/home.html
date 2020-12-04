@@ -14,8 +14,12 @@
   <div class="card-body">
     <h5 class="card-title">{{ post.title_note }}</h5>
     <p class="card-text">{{ post.content_note }}</p>
-    <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">Открыть</a>
-    <a href="{% url 'note-delete' post.pk %}" class="btn btn-primary">Удалить</a>
+    <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">
+
+<!--        <img src="{% static 'images/open_note.png' %}"> --!>
+      Открыть
+    </a>
+    <a href="{% url 'note-delete' post.pk %}" class="remove btn btn-primary">Удалить</a>
     <a href="{% url 'note-update' post.pk %}" class="btn btn-primary">Отредактировать</a>
 </div>
 
