@@ -16,7 +16,7 @@
     <p class="card-text">{{ post.content_note }}</p>
     <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">
 
-<!--        <img src="{% static 'images/open_note.png' %}"> --!>
+        <img src="{% static 'images/open_note.png' %}" class="open-note">
       Открыть
     </a>
     <a href="{% url 'note-delete' post.pk %}" class="remove btn btn-primary">Удалить</a>
