@@ -4,23 +4,30 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <form class="d-flex search-field">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
 {% for post in notes_list %}
 
 <div class="card">
-  <div class="card-header">
-    <a href="{% url 'one-category' post.category_note %}">{{ post.category_note }}</a> - {{ post.date_note }}
-  </div>
   <div class="card-body">
-    <h5 class="card-title">{{ post.title_note }}</h5>
+    <p class="card-title">{{ post.title_note }}</p>
+    <p class="card-category"><a href="{% url 'one-category' post.category_note %}">{{ post.category_note }}</a></p>
     <p class="card-text">{{ post.content_note }}</p>
-    <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">
+    <div class="card-options">
+        <a href="{% url 'note-detail' post.pk %}">
+            <i class="fas fa-envelope-open-text"></i>
+        </a>
+        <a href="{% url 'note-update' post.pk %}">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'note-delete' post.pk %}">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
 
-        <img src="{% static 'images/open_note.png' %}" class="open-note">
-      Открыть
-    </a>
-    <a href="{% url 'note-delete' post.pk %}" class="remove btn btn-primary">Удалить</a>
-    <a href="{% url 'note-update' post.pk %}" class="btn btn-primary">Отредактировать</a>
 </div>
 
 </div>

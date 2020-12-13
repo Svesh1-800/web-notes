@@ -1,11 +1,31 @@
+a:hover{
+    text-decoration: none;
+}
+a i{
+    color: black;
+}
+p a{
+    color: gray;
+}
+.search-field{
+    width: 50%;
+    margin: 5% auto 0;
+}
 .card{
-    margin-top: 40px;
-    width: 55%;
-    position: relative;
-    left: 24%;
+    margin: 1% auto;
+    width: 50%;
+}
+.card-title{
+    font-size: 25px;
+}
+
+.card-options{
+    position: absolute;
+    top: 10%;
+    right: 1%;
+}
+.card-options i{
+    margin-left: 20px;
 
 }
-.open-note{
-    width: 100px;
 
-}
