@@ -14,7 +14,7 @@
 <div class="card">
   <div class="card-body">
     <p class="card-title">{{ post.title_note }}</p>
-    <p class="card-category"><a href="{% url 'one-category' post.category_note %}">{{ post.category_note }}</a></p>
+{#    <p class="card-category"><a href="{% url 'one-category' post.category_note %}">{{ post.category_note }}</a></p>#}
     <p class="card-text">{{ post.content_note }}</p>
     <div class="card-options">
         <a href="{% url 'note-detail' post.pk %}">

@@ -8,7 +8,7 @@
 <div class="container">
 {% for category in categories %}
 
-<p>&bull; <a href="{% url 'one-category' category %}">{{ category }}</a></p>
+<p>&bull;{{ category }}</p>
 
 {% endfor %}
 </div>
