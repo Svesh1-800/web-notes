@@ -21,7 +21,7 @@ class NoteDetailView(DetailView):
 # создание заметки
 class NoteAddView(CreateView):
     model = Note
-    template_name = 'add_note.html'
+    template_name = 'note-add.html'
     fields = '__all__'
 
 # удаление заметки
