@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
 
-from .models import Note
+from .models import Note, Category
 
 # основная страница, со всеми заметками
 class HomeView(ListView):
@@ -40,23 +40,19 @@ class NoteUpdateView(UpdateView):
 
 # вывод всех существующих категорий в блоке "все категории"
 def CategoriesList(request):
-    just_categories = set()
-    data = Note.objects.filter().values_list('category_note', flat=True)
-    for note in data:
-        just_categories.add(note)
+    data = Category.objects.order_by('name')
     context = {
-        'categories': just_categories
-
+        'categories': data
     }
     return render(request, 'categories_list.html', context= context)
 
 
-def OneCategoryList(request, current_category):
-    category_posts = Note.objects.filter(category_note = current_category)
-    return render(request, 'special_category.html',{'notes_list': category_posts} )
+# def OneCategoryList(request, current_category):
+#     category_posts = Note.objects.filter(category_note = current_category)
+#     return render(request, 'special_category.html',{'notes_list': category_posts} )
+#
 
-
-
+# order_by() - отсортировать по определенному полю
 # values(name) - получить  объекты одного поля
 # values_list(name) - получить все объекты одного поля в формате листа
 
