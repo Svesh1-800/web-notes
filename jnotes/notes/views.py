@@ -51,10 +51,17 @@ def CategoriesList(request):
     }
     return render(request, 'categories_list.html', context=context)
 
-# def OneCategoryList(request, current_category):
-#     category_posts = Note.objects.filter(category_note = current_category)
-#     return render(request, 'special_category.html',{'notes_list': category_posts} )
-#
+# вывод все существующих заметок выбранной категории
+def OneCategoryList(request, choice):
+    current_category = remove_slug(choice)
+    category_id = Category.objects.get(name=current_category)
+    category_posts = Note.objects.filter(category_note=category_id)
+    return render(request, 'special_category.html', {'notes_list': category_posts})
+
+# убирает slugify
+def remove_slug(need_to_slug):
+    done = need_to_slug.replace('-', ' ')
+    return done
 
 # order_by() - отсортировать по определенному полю
 # values(name) - получить  объекты одного поля
