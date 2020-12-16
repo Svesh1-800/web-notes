@@ -1,14 +1,22 @@
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
+from django.core.exceptions import ValidationError
+
 
 # модель для создания категорий
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-
+# метод возвращает строковое представление
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if self.name != self.name.lower():
+            self.name = self.name.lower()
+
+
+
 # модель для создания аттрибутов заметки
 class Note(models.Model):
     title_note = models.CharField('Название', blank=False, default='NoTitle', max_length=150)
