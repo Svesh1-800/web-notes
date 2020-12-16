@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 # модель для создания категорий
 class Category(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True, editable=True)
 
 # метод возвращает строковое представление
     def __str__(self):
