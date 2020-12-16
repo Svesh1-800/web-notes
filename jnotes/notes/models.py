@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 
 
 # модель для создания категорий
@@ -12,9 +13,9 @@ class Category(models.Model):
 
     # Метод, который переводит все в нижний регистр.
     # Теперь не имеет значения, в каком регистре все вводится
+    # так же убираю тире, чтобы не было проблем со слагами
     def clean(self):
-        if self.name != self.name.lower():
-            self.name = self.name.lower()
+        self.name = ((self.name).replace('-', '_')).lower()
 
 
 # модель для создания аттрибутов заметки
