@@ -16,6 +16,7 @@
     <p class="card-title">{{ post.title_note }}</p>
     <p class="card-category"><a href="{% url 'one-category' post.category_note|slugify  %}">{{ post.category_note }}</a></p>
     <p class="card-text">{{ post.content_note }}</p>
+    <p class="card-date">{{ post.date_note|date:"d/m/Y" }}</p>
     <div class="card-options">
         <a href="{% url 'note-detail' post.pk %}">
             <i class="fas fa-envelope-open-text"></i>

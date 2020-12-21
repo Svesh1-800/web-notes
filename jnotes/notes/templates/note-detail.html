@@ -10,6 +10,7 @@
 
 <div class="text-block">
     <h1>{{ note.title_note }}</h1>
+    <p>{{ note.date_note|date:"d/m/Y" }}</p>
     <h3>{{ note.category_note }}</h3>
     <p>{{ note.content_note }}</p>
 </div>
