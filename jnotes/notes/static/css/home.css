@@ -5,8 +5,9 @@ a i{
     color: black;
 }
 p a{
-    color: gray;
+    color: #808080;
 }
+
 .search-field{
     width: 50%;
     margin: 5% auto 0;
@@ -26,6 +27,19 @@ p a{
 }
 .card-options i{
     margin-left: 20px;
+}
+.card-date{
+    margin: 20px 0;
+	padding-bottom: 0;
+	height: 0;
+	border: none;
+	border-top: 1px solid #333;
+}
+.not-exist{
+    margin: 5% auto;
+    width: 50%;
+    font-size: 40PX;
+    text-align: center;
 
 }
 

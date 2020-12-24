@@ -1,33 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %} ZZZ {% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
-<style>
-    .card{
-        margin-top: 40px;
-        width: 55%;
-        position: relative;
-	    left: 24%;
+    <form class="d-flex search-field">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    {% if notes_list %}
+        {% for post in notes_list %}
 
-    }
-</style>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">{{ post.title_note }}</p>
+                    <p class="card-category"><a
+                            href="{% url 'one-category' post.category_note|slugify %}">{{ post.category_note }}</a></p>
+                    <p class="card-text">{{ post.content_note|linebreaks|truncatewords_html:50}}</p>
+                    <p class="card-date">{{ post.date_note|date:"d/m/Y" }}</p>
+                    <div class="card-options">
+                        <a href="{% url 'note-detail' post.pk %}">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </a>
+                        <a href="{% url 'note-update' post.pk %}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'note-delete' post.pk %}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
 
-{% for post in notes_list %}
+                </div>
 
-<div class="card">
-  <div class="card-header">
-    {{ post.category_note }} - {{ post.date_note }}
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ post.title_note }}</h5>
-    <p class="card-text">{{ post.content_note }}</p>
-    <a href="{% url 'note-detail' post.pk %}" class="btn btn-primary">Go somewhere</a>
-    <a href="{% url 'note-delete' post.pk %}" class="btn btn-primary">Delete</a>
-    <a href="{% url 'note-update' post.pk %}" class="btn btn-primary">Edit</a>
-</div>
+            </div>
+        {% endfor %}
 
-</div>
-{% endfor %}
+    {% else %}
+        <p class="not-exist">There are no such notes with the selected tag</p>
+    {% endif %}
+
 {% endblock %}

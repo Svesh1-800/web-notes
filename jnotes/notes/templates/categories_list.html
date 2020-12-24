@@ -4,11 +4,15 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/categories_list.css' %}">
+    <form class="d-flex search-field">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
 <div class="container">
 {% for category in categories %}
 
-<p>&bull;{{ category }}</p>
+    <a>&bull; <a href="{%  url 'one-category' category|slugify %}">{{ category }}</a></p>
 
 {% endfor %}
 </div>
