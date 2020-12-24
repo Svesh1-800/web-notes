@@ -20,11 +20,14 @@ class Category(models.Model):
 
 # модель для создания аттрибутов заметки
 class Note(models.Model):
-    title_note = models.CharField('Название', blank=False, default='NoTitle', max_length=150)
+    title_note = models.CharField('Название', blank=True, max_length=150)
     category_note = models.ForeignKey(Category, on_delete=models.CASCADE)
     content_note = models.TextField('Содержание', blank=True)
     date_note = models.DateTimeField(auto_now_add=True)
 
+    def clean(self):
+        if (self.title_note).strip() == "":
+            self.title_note = "NoTitle"
     # при создании заметки пользователя перекидывает на главную страничку
     def get_absolute_url(self):
         return reverse('home')
