@@ -10,7 +10,7 @@ urlpatterns = [
     path('note/<int:pk>/remove', NoteDeleteView.as_view(), name='note-delete'),
     path('note/<int:pk>/update', NoteUpdateView.as_view(), name='note-update'),
     path('categories/', CategoriesList, name='categories-view'),
-    path('category/<str:choice>', OneCategoryList, name='one-category'),
+    path('category/<int:choice>', OneCategoryList, name='one-category'),
 
 ]
 # as_view() используюется, если мы используем базовые view из generic'a

@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <p class="card-title">{{ post.title_note }}</p>
                     <p class="card-category"><a
-                            href="{% url 'one-category' post.category_note|slugify %}">{{ post.category_note }}</a></p>
+                            href="{% url 'one-category' post.category_note.pk %}">{{ post.category_note }}</a></p>
                     <p class="card-text">{{ post.content_note|linebreaks|truncatewords_html:50}}</p>
                     <p class="card-date">{{ post.date_note|date:"d/m/Y" }}</p>
                     <div class="card-options">
