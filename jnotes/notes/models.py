@@ -15,7 +15,7 @@ class Category(models.Model):
     # Теперь не имеет значения, в каком регистре все вводится
     # так же убираю тире, чтобы не было проблем со слагами
     def clean(self):
-        self.name = ((self.name).replace('-', '_')).lower()
+        self.name = (self.name).lower()
 
 
 # модель для создания аттрибутов заметки
