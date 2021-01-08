@@ -51,9 +51,10 @@ def CategoriesList(request):
     }
     return render(request, 'categories_list.html', context=context)
 
+
 # вывод все существующих заметок выбранной категории
 def OneCategoryList(request, choice):
-    category_posts = Note.objects.filter(category_note = choice)
+    category_posts = Note.objects.filter(category_note=choice)
     return render(request, 'special_category.html', {'notes_list': category_posts})
 
 # order_by() - отсортировать по определенному полю
