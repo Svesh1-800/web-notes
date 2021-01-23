@@ -12,7 +12,7 @@
 <div class="container">
 {% for category in categories %}
 
-    <p>&bull; <a href="{%  url 'one-category' category.pk %}">{{ category }}</a></p>
+    <p>&bull; <a href="{%  url 'notes:one-category' category.pk %}">{{ category }}</a></p>
 
 {% endfor %}
 </div>

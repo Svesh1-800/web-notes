@@ -20,13 +20,13 @@
                     <p class="card-text">{{ post.content_note|linebreaks|truncatewords_html:50}}</p>
                     <p class="card-date">{{ post.date_note|date:"d/m/Y" }}</p>
                     <div class="card-options">
-                        <a href="{% url 'note-detail' post.pk %}">
+                        <a href="{% url 'notes:note-detail' post.pk %}">
                             <i class="fas fa-envelope-open-text"></i>
                         </a>
-                        <a href="{% url 'note-update' post.pk %}">
+                        <a href="{% url 'notes:note-update' post.pk %}">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{% url 'note-delete' post.pk %}">
+                        <a href="{% url 'notes:note-delete' post.pk %}">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>

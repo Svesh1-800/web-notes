@@ -2,6 +2,11 @@ from django.urls import path
 from .views import HomeView, NoteDetailView, NoteAddView, NoteDeleteView, NoteUpdateView
 from .views import CategoriesList, OneCategoryList
 
+# устанавливаем пространство имени приложения( но мы выбрали дефолтное значение, могли и не менять)
+# выходит, чтобы обратиться к шаблоного данного приложения нужно обращаться через notes:
+app_name = 'notes'
+
+
 # маршрутизатор
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),

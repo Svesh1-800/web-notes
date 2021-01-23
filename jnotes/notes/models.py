@@ -25,6 +25,7 @@ class Note(models.Model):
     content_note = models.TextField('Содержание', blank=True)
     date_note = models.DateTimeField(auto_now_add=True)
 
+    # функция позволяет обработать введенные данные 
     def clean(self):
         if (self.title_note).strip() == "":
             self.title_note = "NoTitle"
