@@ -31,7 +31,7 @@ class Note(models.Model):
             self.title_note = "NoTitle"
     # при создании заметки пользователя перекидывает на главную страничку
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('notes:home')
 
     # строковое представление
     def __str__(self):
