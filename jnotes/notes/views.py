@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django.urls import reverse, reverse_lazy
 
 from .models import Note, Category
+from .forms import CreateForm
 
 
 # основная страница, со всеми заметками
@@ -25,7 +26,8 @@ class NoteDetailView(DetailView):
 class NoteAddView(CreateView):
     model = Note
     template_name = 'note-add.html'
-    fields = '__all__'
+    form_class = CreateForm
+    
 
 
 # удаление заметки
@@ -56,6 +58,8 @@ def CategoriesList(request):
 def OneCategoryList(request, choice):
     category_posts = Note.objects.filter(category_note=choice)
     return render(request, 'special_category.html', {'notes_list': category_posts})
+
+
 
 # order_by() - отсортировать по определенному полю
 # values(name) - получить  объекты одного поля
