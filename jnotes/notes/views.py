@@ -2,6 +2,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
+from django.contrib import messages
 
 from .models import Note, Category
 from .forms import CreateForm
@@ -33,9 +34,15 @@ class NoteAddView(CreateView):
 # удаление заметки
 class NoteDeleteView(DeleteView):
     model = Note
-    template_name = 'note-delete.html'
-    success_url = reverse_lazy('home')
+    
+    success_url = reverse_lazy('notes:home')
     context_object_name = 'note'
+
+    success_message = 'safsadasd'
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
+    
 
 
 # Обновление заметки
