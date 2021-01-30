@@ -18,7 +18,6 @@ class Category(models.Model):
     def clean(self):
         self.name = (self.name).lower()
 
-        print(self.name)
 
 # модель для создания аттрибутов заметки
 

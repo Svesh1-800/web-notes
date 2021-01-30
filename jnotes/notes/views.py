@@ -2,7 +2,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
-from django.contrib import messages
+
 
 from .models import Note, Category
 from .forms import CreateForm
@@ -39,6 +39,8 @@ class NoteDeleteView(DeleteView):
     context_object_name = 'note'
 
     success_message = 'safsadasd'
+
+    # чтобы удалить заметку сразу, без перехода на другой шаблон
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
 
