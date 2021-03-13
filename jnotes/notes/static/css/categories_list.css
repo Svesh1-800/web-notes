@@ -1,9 +1,13 @@
-.search-field{
-    width: 50%;
-    margin: 5% auto 0;
+.sfield-container{
+    margin-top:20px;
 }
-.container{
-    width: 50%;
-    margin: 2% auto;
-
+.various-categories a{
+    text-decoration: none;
+    color: black;
+}
+.various-categories a:hover{
+    color: blue;
+}
+.categories-container{
+    margin-top:20px;
 }

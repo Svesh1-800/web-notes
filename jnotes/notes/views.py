@@ -51,7 +51,7 @@ class NoteDeleteView(DeleteView):
 class NoteUpdateView(UpdateView):
     model = Note
     template_name = 'note-update.html'
-    fields = '__all__'
+    form_class = CreateForm
 
 
 # вывод всех существующих категорий в блоке "все категории"
@@ -66,7 +66,7 @@ def CategoriesList(request):
 # вывод все существующих заметок выбранной категории
 def OneCategoryList(request, choice):
     category_posts = Note.objects.filter(category_note=choice)
-    return render(request, 'special_category.html', {'notes_list': category_posts})
+    return render(request, 'home.html', {'notes_list': category_posts})
 
 
 

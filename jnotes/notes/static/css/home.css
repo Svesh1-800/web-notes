@@ -1,49 +1,24 @@
-a:hover{
-    text-decoration: none;
+.card-container{
+    margin-top:20px;
+}
+.sfield-container{
+    margin-top:20px;
+}
+.card{
+    max-width: 300px;
+    max-height: 250px;
+    min-width: 300px;
+    min-height: 250px;
+    margin:10px;
+}
+.card:hover {
+    border-color: black;
+}
+.card-delete{
+    position: absolute;
+    top: 1%;
+    right: 2%;
 }
 a i{
-    color: black;
+    color: red;
 }
-p a{
-    color: #808080;
-}
-
-.search-field{
-    width: 50%;
-    margin: 5% auto 0;
-}
-.card{
-    margin: 2% auto;
-    width: 50%;
-}
-.card-title{
-    font-size: 25px;
-}
-
-.card-options{
-    position: absolute;
-    top: 10%;
-    right: 1%;
-}
-.card-options i{
-    margin-left: 20px;
-}
-.card-date{
-    margin: 20px 0;
-	padding-bottom: 0;
-	height: 0;
-	border: none;
-	border-top: 1px solid rgb(138, 138, 138);
-}
-.not-exist{
-    margin: 5% auto;
-    width: 50%;
-    font-size: 40PX;
-    text-align: center;
-
-}
-.card{
-    border-width: 3px;
-    background-color: rgb(252, 252, 47);
-}
-
