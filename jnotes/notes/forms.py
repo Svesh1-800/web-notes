@@ -1,26 +1,27 @@
 from django import forms
 from django.db import models
 
-
 from .models import Note, Category
 
 
 # добавляем временное поле, чтобы при выборе категории был не селектор, а простое поле для ввода
 class CreateForm(forms.ModelForm):
     temp_category = forms.CharField(required=False)
-    field_order = ['title_note','temp_category','content_note']
+    field_order = ['title_note', 'temp_category', 'content_note']
+
     class Meta:
         model = Note
         fields = '__all__'
-        field_order = ['title_note','content_note']
+        field_order = ['title_note', 'content_note']
 
         widgets = {
             'category_note': forms.HiddenInput()
         }
-# функция, которая приводит параметры в нужную форму, тут же исправляем все ошибки    
+
+    # функция, которая приводит параметры в нужную форму, тут же исправляем все ошибки
     def clean(self):
         # если категория непустая 
-        if  self.data['temp_category']:
+        if self.data['temp_category']:
             _mutable = self.data._mutable
             self.data._mutable = True
             self.data['temp_category'] = str(self.data['temp_category']).lower()
@@ -41,10 +42,3 @@ class CreateForm(forms.ModelForm):
                 new_cat = Category.objects.create(name='notag')
                 new_cat.save()
                 self.cleaned_data['category_note'] = new_cat
-        
-           
-
-    
-    
-   
-    

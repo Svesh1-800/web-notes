@@ -1,0 +1,23 @@
+.inputs{
+    border: none;
+    border-bottom: 1px solid #1A1406;
+    min-width: 100%;
+    outline:none;
+}
+
+.field{
+    margin-bottom: 50px;
+}
+.new-post{
+    margin-top: 20px;
+}
+textarea{
+    resize:none;
+}
+.post-content{
+    border:1px solid #1A1406;
+    width: 50%;
+}
+button{
+    width:50%;
+}

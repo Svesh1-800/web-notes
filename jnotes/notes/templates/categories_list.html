@@ -3,18 +3,24 @@
 {% block title %} All categories {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/categories_list.css' %}">
-    <form class="d-flex search-field">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+<div class="container sfield-container">
+    <div class="row">
+        <link rel="stylesheet" href="{% static 'css/categories_list.css' %}">
+        <form class="d-flex search-field">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</div>
 
-<div class="container">
-{% for category in categories %}
+<div class="container categories-container">
+    <div class="row">
+        {% for category in categories %}
 
-    <p>&bull; <a href="{%  url 'notes:one-category' category.pk %}">{{ category }}</a></p>
+        <p class="various-categories">&bull; <a class='col-12' href="{%  url 'notes:one-category' category.pk %}">{{ category }}</a></p>
 
-{% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

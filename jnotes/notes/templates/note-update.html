@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load my_filter %}
+{% block title %}master{% endblock %}
 
-{% block title %} Update {% endblock %}
 
 {% block content %}
-
-<h1>Update post</h1>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary">Update</button>
-    </form>
+<link rel="stylesheet" href="{% static 'css/note_add.css' %}">
+<div class="container">
+    <div class="row">
+        <form method="POST" class="new-post">
+            {% csrf_token %}
+            <div class="field">
+            <p class="h2">Title:</p>
+            {{ form.title_note|addclass:'post-title inputs' }}
+            </div>
+            <div class="field">
+            <p class="h2">Category:</p>
+            {{ form.temp_category|addclass:'post-category inputs' }}
+            </div>
+            <div class="field">
+            <p class="h2">Content:</p>
+            {{ form.content_note|addclass:'post-content inputs' }}
+            </div>
+            <div class="col-md-12 text-center">
+            <button class="btn btn-secondary btn-lg btn-block">Update</button>
+            </div>
+        </form>
+    </div>
 </div>
-
 {% endblock %}

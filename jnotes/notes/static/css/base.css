@@ -1,21 +1,10 @@
-/* блок с формой поиска ( поле поиска + кнопка) */
-.search-field{
-	position: relative;
-	margin-top: 40px
-}
 /* оступ элементов Navbar'a друг от друга */
 .nav-item{
 	padding-left: 20px;
 }
-/* шрифт для названия сервиса */
-.main-text{
-	font-size: 20px;
-	font-family: 'Georgia';
+.navbar-brand{
+    vertical-align: middle;
 }
-/* элементы Navbar'a справа */
-.end-nav{
-	position: absolute;
-	right: 0px;
-	padding-right:2px;
-}
+
+
 

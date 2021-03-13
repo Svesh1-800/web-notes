@@ -4,34 +4,37 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <form class="d-flex search-field">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-
-{% for post in notes_list %}
-
-<div class="card">
-  <div class="card-body">
-    <p class="card-title">{{ post.title_note }}</p>
-    <p class="card-category"><a href="{% url 'notes:one-category' post.category_note.pk  %}">{{ post.category_note }}</a></p>
-    <p class="card-text">{{ post.content_note|linebreaks|truncatewords_html:50}}</p>
-    <p class="card-date">{{ post.date_note|date:"d/m/Y" }}</p>
-    <div class="card-options">
-        <a href="{% url 'notes:note-detail' post.pk %}">
-            <i class="fas fa-envelope-open-text"></i>
-        </a>
-        <a href="{% url 'notes:note-update' post.pk %}">
-            <i class="fas fa-edit"></i>
-        </a>
-        <a href="{% url 'notes:note-delete' post.pk %}">
-            <i class="fas fa-trash"></i>
-        </a>
+<div class="container sfield-container">
+    <div class="row">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
-
 </div>
+<div class="container card-container">
+    <div class="row justify-content-center">
 
+        {% for post in notes_list %}
+
+        <div onclick="window.location='{% url 'notes:note-detail' post.pk %}'" class="card col-md-12 col-12x">
+            <div class="card-body">
+                <div class="card-delete">
+                    <a href="{% url 'notes:note-delete' post.pk %}">
+                        <i class="fas fa-times fa-2x"></i>
+                    </a>
+                </div>
+
+                <h5 class="card-title">{{ post.title_note }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ post.category_note }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ post.date_note|date:"d/m/Y" }}</h6>
+                <p class="card-text">{{ post.content_note|truncatechars:150 }}</p>
+
+
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
 </div>
-
-{% endfor %}
 {% endblock %}
