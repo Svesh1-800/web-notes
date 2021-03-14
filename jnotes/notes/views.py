@@ -8,6 +8,9 @@ from .models import Note, Category
 from .forms import CreateForm
 
 
+def donation_page(request):
+    return render(request=request,template_name='donation.html')
+
 # основная страница, со всеми заметками
 class HomeView(ListView):
     model = Note
