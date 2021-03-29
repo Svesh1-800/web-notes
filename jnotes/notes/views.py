@@ -59,10 +59,16 @@ class NoteUpdateView(UpdateView):
 
 # вывод всех существующих категорий в блоке "все категории"
 def CategoriesList(request):
-    data = Category.objects.order_by('name')
+
+    for item in Category.objects.all(): # цикл удаляет категории у которых нет записей
+        if len(Note.objects.filter(category_note_id=item.pk))==0:
+            Category.objects.get(name=item).delete()
+    data2 = Category.objects.order_by('name')
+
     context = {
-        'categories': data
+        'categories': data2
     }
+
     return render(request, 'categories_list.html', context=context)
 
 
