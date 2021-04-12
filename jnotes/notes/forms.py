@@ -36,9 +36,10 @@ class CreateForm(forms.ModelForm):
             self.data._mutable = _mutable
         # если пользователь ничего не ввел
         else:
-            if Category.objects.get(name='notag'):
+            try:
+                Category.objects.get(name='notag')
                 self.cleaned_data['category_note'] = Category.objects.get(name='notag')
-            else:
+            except:
                 new_cat = Category.objects.create(name='notag')
                 new_cat.save()
                 self.cleaned_data['category_note'] = new_cat

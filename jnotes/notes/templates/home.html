@@ -14,7 +14,7 @@
 </div>
 <div class="container card-container">
     <div class="row justify-content-center">
-
+    {% if notes_list %}
         {% for post in notes_list %}
 
         <div onclick="window.location='{% url 'notes:note-detail' post.pk %}'" class="card col-md-12 col-12x">
@@ -34,6 +34,9 @@
         </div>
 
         {% endfor %}
+        {% else %}
+        <p class="h1 justify-content">ahahahahahahah</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
