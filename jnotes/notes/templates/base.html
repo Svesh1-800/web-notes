@@ -30,16 +30,20 @@
                                     <a class="nav-link" aria-current="page" href="#">Global notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'notes:home' %}">Local notes</a>
+                                    <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page"
+                                       href="{% url 'notes:home' %}">Local notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {% if url_name == 'categories-view' %}active{% endif %}" href="{% url 'notes:categories-view' %}">Categories</a>
+                                    <a class="nav-link {% if url_name == 'categories-view' %}active{% endif %}"
+                                       href="{% url 'notes:categories-view' %}">Categories</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link {% if url_name == 'note-add' %}active{% endif %}" href="{% url 'notes:note-add' %}">New note</a>
+                                    <a class="nav-link {% if url_name == 'note-add' %}active{% endif %}"
+                                       href="{% url 'notes:note-add' %}">New note</a>
                                 </li>
                                 <li class="nav-item">
-                                   <a class="nav-link {% if url_name == 'donation' %}active{% endif %}" href="{% url 'notes:donation' %}">Feed the creators</a>
+                                    <a class="nav-link {% if url_name == 'donation' %}active{% endif %}"
+                                       href="{% url 'notes:donation' %}">Feed the creators</a>
                                 </li>
                             </ul>
                             {% endwith %}
@@ -54,6 +58,7 @@
     {% block content %}
 
     {% endblock %}
+
 </main>
 <footer>
 
