@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic import CreateView, DeleteView, View
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from .models import Note, Category
 from .forms import CreateForm
