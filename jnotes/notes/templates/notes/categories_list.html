@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} All categories {% endblock %}
+
+{% block content %}
+{% include 'inc/_search_field.html' %}
+
+<div class="container categories-container">
+    <div class="row">
+        {% for category in categories %}
+
+        <p class="various-categories">&bull; <a class='col-12' href="{%  url 'notes:one-category' category.pk %}">{{
+            category }}</a></p>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

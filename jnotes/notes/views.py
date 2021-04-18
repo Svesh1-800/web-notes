@@ -11,13 +11,13 @@ from .forms import CreateForm
 class DonationPageView(View):
 
     def get(self, request, *args, **kwargs):
-        return render(request=request, template_name='donation.html')
+        return render(request=request, template_name='notes/donation.html')
 
 
 # основная страница, со всеми заметками
 class HomeView(ListView):
     model = Note
-    template_name = 'home.html'
+    template_name = 'notes/home.html'
     ordering = ['-date_note']
     context_object_name = 'notes_list'
 
@@ -25,14 +25,14 @@ class HomeView(ListView):
 # содержание заметки
 class NoteDetailView(DetailView):
     model = Note
-    template_name = 'note-detail.html'
+    template_name = 'notes/note-detail.html'
     context_object_name = 'note'
 
 
 # создание заметки
 class NoteAddView(CreateView):
     model = Note
-    template_name = 'note-add.html'
+    template_name = 'notes/note-add.html'
     form_class = CreateForm
 
 
@@ -51,7 +51,7 @@ class NoteDeleteView(DeleteView):
 # Обновление заметки
 class NoteUpdateView(UpdateView):
     model = Note
-    template_name = 'note-update.html'
+    template_name = 'notes/note-update.html'
     form_class = CreateForm
 
 
@@ -63,14 +63,14 @@ class CategoriesList(View):
                 Category.objects.get(name=item).delete()
         model = Category.objects.order_by('name')
 
-        return render(request, 'categories_list.html', {'categories': model})
+        return render(request, 'notes/categories_list.html', {'categories': model})
 
 
 # вывод все существующих заметок выбранной категории
 class OneCategoryList(View):
     def get(self, request, choice):
         category_posts = Note.objects.filter(category_note=choice)
-        return render(request, 'home.html', {'notes_list': category_posts})
+        return render(request, 'notes/home.html', {'notes_list': category_posts})
 
 # order_by() - отсортировать по определенному полю
 # values(name) - получить  объекты одного поля

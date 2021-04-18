@@ -15,7 +15,7 @@ class Category(models.Model):
     # Метод, который переводит все в нижний регистр.
     # Теперь не имеет значения, в каком регистре все вводится
     def clean(self):
-        self.name = (self.name).lower()
+        self.name = self.name.lower()
 
     # использую класс для того, чтобы преобразовать нужные данные в админке
     class Meta:
@@ -38,8 +38,6 @@ class Note(models.Model):
         if self.title_note.strip() == "":
             self.title_note = "NoTitle"
 
-    # при создании заметки пользователя перекидывает на главную страничку
-    # неправильно
     def get_absolute_url(self):
         return reverse('notes:home')
 
