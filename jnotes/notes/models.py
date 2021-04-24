@@ -6,7 +6,7 @@ from datetime import datetime
 
 # модель для создания категорий
 class Category(models.Model):
-    name = models.CharField(max_length=255, unique=True, editable=True)
+    name = models.CharField(max_length=255,  unique=True, editable=True)
 
     # метод возвращает строковое представление
     def __str__(self):
@@ -34,9 +34,7 @@ class Note(models.Model):
     date_note = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     # функция позволяет обработать введенные данные
-    def clean(self):
-        if self.title_note.strip() == "":
-            self.title_note = "NoTitle"
+
 
     def get_absolute_url(self):
         return reverse('notes:home')
