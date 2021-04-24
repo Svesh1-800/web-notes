@@ -11,7 +11,8 @@
         <div class="text-block">
             <h1>{{ note.title_note }}/<a href="{% url 'notes:one-category' note.category_note.pk %}">{{ note.category_note }}</a></h1>
             <p>{{ note.date_note|date:"d/m/Y" }}</p>
-            <p>{{ note.content_note }}</p>
+            <a href="{% url 'notes:note-update' note.pk %}">Fuck</a>
+            <p class="note_date">{{ note.content_note|linebreaks }}</p>
         </div>
     </div>
 </div>

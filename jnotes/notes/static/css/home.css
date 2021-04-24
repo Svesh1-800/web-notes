@@ -13,6 +13,7 @@
 }
 .card:hover {
     border-color: black;
+    
 }
 .card-delete{
     position: absolute;
@@ -22,3 +23,7 @@
 a i{
     color: red;
 }
+i:hover{
+    color: pink;
+}
+

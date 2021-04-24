@@ -10,20 +10,16 @@
     <div class="row">
         <form method="POST" class="new-post">
             {% csrf_token %}
+            {% for item in form %}
             <div class="field">
-            <p class="h2">Title:</p>
-            {{ form.title_note|addclass:'post-title inputs' }}
+                {{ item.label_tag }}
+                {{ item }}
             </div>
-            <div class="field">
-            <p class="h2">Category:</p>
-            {{ form.temp_category|addclass:'post-category inputs' }}
-            </div>
-            <div class="field">
-            <p class="h2">Content:</p>
-            {{ form.content_note|addclass:'post-content inputs' }}
-            </div>
+
+            {% endfor %}
+
             <div class="col-md-12 text-center">
-            <button class="btn btn-secondary btn-lg btn-block">Save</button>
+                <button class="btn btn-secondary btn-lg btn-block">Save</button>
             </div>
         </form>
     </div>

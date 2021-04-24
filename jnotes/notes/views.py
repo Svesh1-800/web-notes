@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic import CreateView, DeleteView, View
 from django.urls import reverse_lazy
@@ -30,10 +30,20 @@ class NoteDetailView(DetailView):
 
 
 # создание заметки
-class NoteAddView(CreateView):
-    model = Note
-    template_name = 'notes/note-add.html'
-    form_class = CreateForm
+class NoteAddView(View):
+    def post(self, request, *args, **kwargs):
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            chosen_category = Category.objects.get_or_create(name=form.cleaned_data['category'])
+            Note.objects.create(title_note=form.cleaned_data['title'],
+                                category_note=Category(chosen_category[0]).pk,
+                                content_note=form.cleaned_data['content'])
+
+            return redirect('notes:home')
+
+    def get(self, request):
+        form = CreateForm()
+        return render(request, 'notes/note-add.html', {'form': form})
 
 
 # удаление заметки
@@ -49,10 +59,27 @@ class NoteDeleteView(DeleteView):
 
 
 # Обновление заметки
-class NoteUpdateView(UpdateView):
-    model = Note
-    template_name = 'notes/note-update.html'
-    form_class = CreateForm
+class NoteUpdateView(View):
+    def post(self, request, *args, **kwargs):
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            chosen_category = Category.objects.get_or_create(name=form.cleaned_data['category'])
+            chosen_note = Note.objects.get(pk=self.kwargs['pk'])
+            chosen_note.title_note = form.cleaned_data['title']
+            chosen_note.category_note = Category(chosen_category[0]).pk
+            chosen_note.content_note = form.cleaned_data['content']
+            chosen_note.save()
+            return redirect('notes:home')
+
+    def get(self, request, *args, **kwargs):
+        chosen_note = Note.objects.get(pk=self.kwargs['pk'])
+        data = {
+            'title': chosen_note.title_note,
+            'category': chosen_note.category_note,
+            'content': chosen_note.content_note,
+        }
+        form = CreateForm(data)
+        return render(request, 'notes/note-add.html', {'form': form})
 
 
 # вывод всех существующих категорий в блоке "все категории"
