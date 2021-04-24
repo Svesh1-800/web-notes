@@ -21,3 +21,8 @@ textarea{
 button{
     width:50%;
 }
+
+label{
+    font-weight: bold;
+    font-size: 30px;
+}
