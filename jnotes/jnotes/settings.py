@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'notes.apps.NotesConfig',
+    'debug_toolbar',
 
 ]
 
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'jnotes.urls'
@@ -65,7 +67,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries': {
-                #'my_filter': 'notes.templatetags.my_filter',
+                # 'my_filter': 'notes.templatetags.my_filter',
 
             }
         },
@@ -121,6 +123,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'notes/static'),
     os.path.join(BASE_DIR, 'jnotes/static'),
+    os.path.join(BASE_DIR, 'notes/static'),
+]
+
+# для toolbara
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
 ]

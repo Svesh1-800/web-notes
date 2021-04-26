@@ -21,6 +21,9 @@ class HomeView(ListView):
     ordering = ['-date_note']
     context_object_name = 'notes_list'
 
+    def get_queryset(self):
+        return Note.objects.all().select_related('category_note')
+
 
 # содержание заметки
 class NoteDetailView(DetailView):
