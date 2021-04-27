@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
@@ -28,6 +28,7 @@ class Category(models.Model):
 
 
 class Note(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     title_note = models.CharField(blank=True, max_length=150, verbose_name='Заголовок')
     category_note = models.ForeignKey(Category, blank=True, on_delete=models.CASCADE, verbose_name='категория')
     content_note = models.TextField(blank=True, verbose_name='Контент')
