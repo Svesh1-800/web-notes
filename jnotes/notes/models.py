@@ -33,6 +33,7 @@ class Note(models.Model):
     content_note = models.TextField(blank=True, verbose_name='Контент')
     date_note = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
+
     # функция позволяет обработать введенные данные
 
 
@@ -50,3 +51,4 @@ class Note(models.Model):
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'
         ordering = ['-date_note']
+
