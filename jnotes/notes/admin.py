@@ -5,9 +5,9 @@ from .models import Note, Category
 
 # для отображения полей в админке для модели Note
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title_note', 'category_note', 'date_note')
-    list_display_links = ('id', 'title_note')  # будут использоваться как ссылки
-    search_fields = ('title_note',)  # по этим полям будет осуществляться поиск
+    list_display = ('id', 'author', 'title_note', 'category_note', 'date_note')
+    list_display_links = ('id', 'author','title_note')  # будут использоваться как ссылки
+    search_fields = ('title_note', 'author')  # по этим полям будет осуществляться поиск
 
 
 class CategoryAdmin(admin.ModelAdmin):
