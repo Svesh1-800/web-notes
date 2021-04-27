@@ -17,9 +17,11 @@
                         <i class="fas fa-times fa-2x"></i>
                     </a>
                 </div>
+
                 <h5 class="card-title">{{ post.title_note }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ post.category_note }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">{{ post.date_note|date:"d/m/Y" }}</h6>
+                <h6>{{ post.author }}</h6>
                 <p class="card-text">{{ post.content_note|truncatechars:150 }}</p>
 
 

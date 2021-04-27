@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
@@ -28,10 +28,12 @@ class Category(models.Model):
 
 
 class Note(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     title_note = models.CharField(blank=True, max_length=150, verbose_name='Заголовок')
     category_note = models.ForeignKey(Category, blank=True, on_delete=models.CASCADE, verbose_name='категория')
     content_note = models.TextField(blank=True, verbose_name='Контент')
     date_note = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
 
     # функция позволяет обработать введенные данные
 
@@ -50,3 +52,4 @@ class Note(models.Model):
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'
         ordering = ['-date_note']
+

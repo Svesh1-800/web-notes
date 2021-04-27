@@ -1,10 +1,51 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.contrib import messages
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic import CreateView, DeleteView, View
-from django.urls import reverse_lazy
-
+from django.contrib.auth import login, logout
 from .models import Note, Category
-from .forms import CreateForm
+from django.contrib.auth.models import User
+from .forms import CreateForm, UserRegisterForm, UserLoginForm
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('notes:home')
+
+
+class RegisterView(View):
+    def post(self, request):
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'ого вау')
+            return redirect('notes:home')
+        else:
+            messages.error(request, 'бля')
+            return render(request, 'notes/register.html', {'form': form})
+
+    def get(self, request):
+        form = UserRegisterForm()
+        return render(request, 'notes/register.html', {'form': form})
+
+
+class LoginView(View):
+    def post(self, request):
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('notes:home')
+        else:
+            messages.error(request, 'бля')
+            return render(request, 'notes/login.html', {'form': form})
+
+    def get(self, request):
+        form = UserLoginForm()
+        return render(request, 'notes/login.html', {'form': form})
 
 
 # вывод шаблона для донатов
@@ -21,8 +62,10 @@ class HomeView(ListView):
     ordering = ['-date_note']
     context_object_name = 'notes_list'
 
+    # paginate_by = 2  это на случай пагинации
     def get_queryset(self):
-        return Note.objects.all().select_related('category_note')
+        if self.request.user.is_active:
+            return Note.objects.filter(author=self.request.user).select_related('category_note')
 
 
 # содержание заметки
@@ -40,7 +83,9 @@ class NoteAddView(View):
             chosen_category = Category.objects.get_or_create(name=form.cleaned_data['category'])
             Note.objects.create(title_note=form.cleaned_data['title'],
                                 category_note=Category(chosen_category[0]).pk,
-                                content_note=form.cleaned_data['content'])
+                                content_note=form.cleaned_data['content'],
+                                author=User(request.user.pk)
+                                )
 
             return redirect('notes:home')
 
@@ -54,10 +99,10 @@ class NoteDeleteView(DeleteView):
     model = Note
 
     success_url = reverse_lazy('notes:home')
-    context_object_name = 'note'
 
     # чтобы удалить заметку сразу, без перехода на другой шаблон
     def get(self, *args, **kwargs):
+        messages.success(self.request, 'ddddd')
         return self.post(*args, **kwargs)
 
 
