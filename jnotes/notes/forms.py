@@ -12,6 +12,8 @@ class UserLoginForm(AuthenticationForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
+
+
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label='Имя пользователя',
                                widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}))

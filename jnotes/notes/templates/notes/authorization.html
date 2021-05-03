@@ -1,0 +1,57 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/authorization.css' %}">
+    <title>Document</title>
+</head>
+<body>
+<h2>Улыбка Жокера</h2>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form method="post" name="#ccc">
+            <h1>El problema</h1>
+            {% csrf_token %}
+            <input type="text" name="username">
+            <input type="password" name="password1">
+            <input type="password" name="password2">
+            <input type="hidden" name="metadata" value="register">
+
+
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form method="post">
+            <h1>Sign in</h1>
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="hidden" name="metadata" value="login">
+
+
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/authorization.js' %}"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ from .views import HomeView, NoteDetailView, NoteAddView, NoteDeleteView, NoteUp
 from .views import CategoriesList, OneCategoryList
 from .views import DonationPageView
 
-from .views import RegisterView,LoginView, LogoutView
+from .views import RegisterView,LoginView, LogoutView, test
 
 # устанавливаем пространство имени приложения( но мы выбрали дефолтное значение, могли и не менять)
 # выходит, чтобы обратиться к шаблоного данного приложения нужно обращаться через notes:
@@ -12,7 +12,7 @@ app_name = 'notes'
 
 # маршрутизатор
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('home/', HomeView.as_view(), name='home'),
     path('note/<int:pk>', NoteDetailView.as_view(), name='note-detail'),
     path('add_note/', NoteAddView.as_view(), name='note-add'),
     path('note/<int:pk>/remove', NoteDeleteView.as_view(), name='note-delete'),
@@ -22,7 +22,8 @@ urlpatterns = [
     path('donation/', DonationPageView.as_view(), name='donation'),
     path('register/', RegisterView.as_view(), name='register'),
     path('login/',LoginView.as_view(),name='login'),
-    path('logout/', LogoutView.as_view(), name='logout')
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('',test, name='checking'),
 
 
 ]
