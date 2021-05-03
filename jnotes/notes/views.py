@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, UpdateView
@@ -9,10 +9,16 @@ from django.contrib.auth.models import User
 from .forms import CreateForm, UserRegisterForm, UserLoginForm
 
 
+def test(request):
+    if request.user.is_authenticated:
+        return redirect("notes:home")
+    return redirect("notes:register")
+
+
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect('notes:home')
+        return redirect('notes:checking')
 
 
 class RegisterView(View):
@@ -24,7 +30,7 @@ class RegisterView(View):
             messages.success(request, 'ого вау')
             return redirect('notes:home')
         else:
-            messages.error(request, 'бля')
+
             return render(request, 'notes/register.html', {'form': form})
 
     def get(self, request):
@@ -38,19 +44,17 @@ class LoginView(View):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+
             return redirect('notes:home')
         else:
-            messages.error(request, 'бля')
             return render(request, 'notes/login.html', {'form': form})
 
     def get(self, request):
         form = UserLoginForm()
         return render(request, 'notes/login.html', {'form': form})
 
-
 # вывод шаблона для донатов
 class DonationPageView(View):
-
     def get(self, request, *args, **kwargs):
         return render(request=request, template_name='notes/donation.html')
 
@@ -86,12 +90,15 @@ class NoteAddView(View):
                                 content_note=form.cleaned_data['content'],
                                 author=User(request.user.pk)
                                 )
-
+            print(self.request.POST)
             return redirect('notes:home')
 
     def get(self, request):
-        form = CreateForm()
-        return render(request, 'notes/note-add.html', {'form': form})
+        if request.user.is_authenticated:
+            form = CreateForm()
+            return render(request, 'notes/note-add.html', {'form': form})
+        else:
+            return HttpResponse('<h1>suck ma d</h1>')
 
 
 # удаление заметки
