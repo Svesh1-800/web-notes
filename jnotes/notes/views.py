@@ -7,23 +7,24 @@ from django.contrib.auth import login, logout
 from .models import Note, Category
 from django.contrib.auth.models import User
 from .forms import CreateForm, UserRegisterForm, UserLoginForm
+from django.db.models import Q
 
-
+# контрольно-пропускной пункт на сервис//проверка на авторизацию
 def test(request):
     if request.user.is_authenticated:
         return redirect("notes:home")
     return redirect("notes:register")
 
-
+# выход из аккаунта//использую встроенную библиотеку для этого
 class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('notes:checking')
 
-
+# регистрация аккаунта и сразву авторизация
 class RegisterView(View):
     def post(self, request):
-        form = UserRegisterForm(request.POST)
+        form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -37,7 +38,7 @@ class RegisterView(View):
         form = UserRegisterForm()
         return render(request, 'notes/register.html', {'form': form})
 
-
+# вход в аккаунт
 class LoginView(View):
     def post(self, request):
         form = UserLoginForm(data=request.POST)
@@ -52,6 +53,7 @@ class LoginView(View):
     def get(self, request):
         form = UserLoginForm()
         return render(request, 'notes/login.html', {'form': form})
+
 
 # вывод шаблона для донатов
 class DonationPageView(View):
@@ -90,7 +92,6 @@ class NoteAddView(View):
                                 content_note=form.cleaned_data['content'],
                                 author=User(request.user.pk)
                                 )
-            print(self.request.POST)
             return redirect('notes:home')
 
     def get(self, request):
@@ -143,15 +144,24 @@ class CategoriesList(View):
         for item in Category.objects.all():  # цикл удаляет категории у которых нет записей
             if len(Note.objects.filter(category_note_id=item.pk)) == 0:
                 Category.objects.get(name=item).delete()
-        model = Category.objects.order_by('name')
+        all_categories = Category.objects.order_by('name')
+        author_categories = []
+        for category in all_categories:
+            categories_notes = category.note_set.all()
 
-        return render(request, 'notes/categories_list.html', {'categories': model})
+            for note in categories_notes:
+                if note.author == self.request.user:
+                    pull_out = Category.objects.get(name=note.category_note)
+                    if pull_out not in author_categories:
+                        author_categories.append(pull_out)
+
+        return render(request, 'notes/categories_list.html', {'categories': author_categories})
 
 
 # вывод все существующих заметок выбранной категории
 class OneCategoryList(View):
     def get(self, request, choice):
-        category_posts = Note.objects.filter(category_note=choice)
+        category_posts = Note.objects.filter(Q(category_note=choice) & Q(author=self.request.user))
         return render(request, 'notes/home.html', {'notes_list': category_posts})
 
 # order_by() - отсортировать по определенному полю
